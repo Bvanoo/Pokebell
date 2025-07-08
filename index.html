@@ -9,8 +9,8 @@
 
 
 <body>
-
     <header>
+        <audio src="" id="audio"></audio>
         <img src="Assets/logoPokebell.png" alt="">
         
         <nav>
@@ -25,23 +25,40 @@
         <img class= "Logo" src="Assets/pikaben-removebg-preview.png" alt="Pikachu dessiner en paint">
 
     </header>
-
+    
     <div id="main-container">
-
+        
         <nav>
-                <h2>Menu</h2>
-
-                <select name="deroul" id="listing" ></select>
-
+            <!-- <h2>Menu</h2> -->
+            
+            <select name="deroul" id="listing" >
+                <option value = "def">Choissisez un pokemon </option>
+                <option value="9999">Pikaben</option>
+            </select>
+            
             <div id="last_choice"></div>
-                
-            <div class="loader"></div>
+            
+            
         </nav>
-
+        
+        <div class="loader" id="loader"></div>
         <main>
-
             <div>
-
+                    <div id="affichage"></div>
+                <div id="rightScreen">
+                    <!-- <canvas id="myChart"></canvas> -->
+                    
+                </div>
+                <div id="btnScreen">
+                    <div id="Info">
+                                                
+                    </div>
+                    <div id="Stat">
+                    </div>
+                    <div id="Visu"></div>
+                    <div id="Atq"></div>
+                    <div id="Cri"></div>
+                </div>
                 <img src="Assets/testpoke.png" alt="">
             </div>
     
@@ -63,7 +80,8 @@
         </div>
         
     </footer>
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" class=""></script>
+ 
     <script src="Script/main.js"></script>
 </body>
 
