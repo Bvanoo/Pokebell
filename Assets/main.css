@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* 
+{
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+}
+
+:root
+{
+    --color1: #d4062c;	/*Rouge Pokedex -Couleur principale de la coque extérieure	*/
+
+    --color2: #94011c;	/*Rouge profond -Variante plus foncée pour les ombres/surfaces internes*/	
+
+    --color3: #2E2E2E;	/*Noir Bordure - Détails, contours, rainures*/
+
+    --color4: #7D7D7D;	/*Gris Metallique - Pour les zones métalliques (articulations, vis)	*/
+
+    --color5: #B0C4DE;	/*Bleu Ecran - Écran principal (aspect rétro LCD bleuté)*/
+
+    --color6: #228B22;	/*vert bouton - Un des boutons (souvent vert ou vert forêt)*/	
+
+    --color7: #f29c06;	/*Jaune bouton - Bouton secondaire (souvent jaune doré)*/	
+
+    --color8: #4682B4;	/*Bleu bouton - Un autre bouton ou LED	*/
+
+    --color9: #F5F5F5;	/*Blanc led - Pour les petits éléments lumineux ou contours*/
+
+}
+
+header{
+    display: flex;
+    border-radius: 30px;
+    margin: 10px;
+    background-color: var(--color1);
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid black;
+    box-shadow:  5px 5px 2px #94011c;
+    position: relative;
+    z-index: 1;
+
+    /* .shadow{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: white;
+        z-index: 0;
+    } */
+
+    img{
+    height: 80px;
+    
+    }
+    
+    .btn{
+        cursor: pointer;
+    }
+    ul{
+        display: flex;
+        list-style: none;
+        gap: 80px;
+        
+        li{
+            padding: 10px ;
+            background-color: #67C09D;
+            border: 2px solid black;
+            border-radius: 15px;
+            list-style: none;
+            font-size: 1.4rem;
+            box-shadow: 2px 2px 3px #242424;
+            transition: ease-in-out 200ms;
+        }
+        li:hover{
+            box-shadow: 0px 0px 0px #242424;
+        }
+        
+    }
+    
+    .Logo 
+    {
+        height: 80px;
+    }
+}
+
+
+
+body 
+{
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    h2 
+    {
+        color: var(--color5);
+        justify-self: center;
+    }
+
+    #main-container 
+    {
+        display: flex;
+        flex-grow: 1;
+
+        nav 
+        {
+            color: var(--color8);
+            
+            position: relative;
+            padding: 10px 0px;
+            margin: 10px;
+            justify-items: center;
+            border-right: 5px solid var(--color1);           
+
+            width: 10%;
+
+            select {
+                width: 90%;
+            }
+
+
+
+            
+
+        }
+
+        main 
+        {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            
+            div{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img{
+                    height: 700px;
+                }
+            }
+        }
+
+        
+
+    }
+}
+
+footer 
+{
+    display: flex;
+    border-radius: 30px;
+    margin: 10px;
+    background-color: var(--color1);
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid black;
+    box-shadow:  5px 5px 2px #94011c;
+
+
+}
+
+.foot{
+    margin: 20px 20px;
+    img{
+        margin-left: 30px;
+    }
+}
+
+/* #pokedex:hover{
+    color: #FFD700;
+    scale: 1.1;
+    border-radius: 70px;
+    background: #e0e0e0;
+    box-shadow:  20px 20px 40px #929292,
+                -20px -20px 40px #ffffff;
+    }
+
+#pokedex{
+    transition: ease-in-out 200ms;
+} */
+
+.loader {
+  height: 60px;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform-origin: bottom;
+}
+
+.loader::after {
+    background: radial-gradient(at 75% 15%,#fffb,#0000 35%),
+    radial-gradient(at 80% 40%,#0000,#0008),
+    radial-gradient(circle  5px,#fff 94%,#0000),
+    radial-gradient(circle 10px,#000 94%,#0000),
+    linear-gradient(#F93318 0 0) top   /100% calc(50% - 5px),
+    linear-gradient(#fff    0 0) bottom/100% calc(50% - 5px)#000;
+    background-repeat: no-repeat;
+    animation: l20 1s infinite cubic-bezier(0.5,120,0.5,-120);
+}
+
+.loader::before {
+  background: #ddd;
+  filter: blur(8px);
+  transform: scaleY(0.4) translate(-13px, 0px);
+}
+
+@keyframes l20 {
+ 
+  30%,70% {
+    transform: rotate(0deg)
+  }
+
+  49.99% {
+    transform: rotate(0.2deg)
+  }
+
+  50% {
+    transform: rotate(-0.2deg)
+  }
+}
