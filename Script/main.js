@@ -79,12 +79,12 @@ select.addEventListener('change', async () => {
                     type: 'radar',
                     data: {
                         labels: [
-                            'Hp',
-                            'Attaque',
-                            'Defense-Spé',
-                            'Vitesse',
-                            'Defense',
-                            'Attaque-Spé'
+                            'Pv',
+                            'Atq',
+                            'Def-Spé',
+                            'Vit',
+                            'Def',
+                            'Atq-Spé'
                         ],
                         datasets: [{
                             label: `${name}`,
