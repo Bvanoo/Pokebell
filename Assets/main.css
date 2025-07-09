@@ -43,7 +43,7 @@ header{
     display: flex;
     position: fixed;
     top: 5px;
-    left: 0;
+    height: 80px;
     width: 98%;
     margin-left: 1%;
     border-radius: 30px;
@@ -57,7 +57,7 @@ header{
     z-index: 1;
 
     img{
-    height: 80px;
+    height:135px;
     }
     
     .btn{
@@ -72,7 +72,7 @@ header{
             padding: 10px ;
             background-color: #67C09D;
             border: 2px solid black;
-            border-radius: 15px;
+            border-radius: 10px;
             list-style: none;
             font-size: 1.4rem;
             box-shadow: 2px 2px 3px #242424;
@@ -90,7 +90,16 @@ header{
     }
 }
 
-
+#titleName{
+    font-size: 30px;
+    color: #14ccf5;
+    border-bottom: 2px solid;
+}
+ 
+.titleStat{
+   
+    border-bottom: 2px solid;
+}
 
 body 
 {
@@ -126,22 +135,27 @@ body
         background-repeat: no-repeat;
     }
     select {
-        border: none;
-        background-color: #f5f5f500;
-        width: 155px;
-        height: 70px;
-        margin-left: -80px;
+        font-size: 25px;
+        background-color: #67C09D;
+        border-radius: 10px;
+        border: 2px solid black;
+        width: 146px;
+        height: 66px;
+        margin-left: -85px;
+        margin-top: 10px;
         text-transform: capitalize;
         color: black;
         cursor: pointer;
         appearance: none;
         padding: 8px;
+        box-shadow: 2px 2px 3px #242424;
+        transition: ease-in-out 200ms;
         }
 
         select option{
-                background-color: rgb(124, 189, 191);
+                background-color: #aac4b9d5;
                 font-weight: 500;
-                color: #fff;
+                color: black;
                 height: 100px;
             }
 
@@ -154,10 +168,6 @@ body
         }
 
         #affichage{
-            /* position: absolute; */
-            /* top: 44%; */
-            /* left: 39%; */
-            /* transform: translate(-48%,-43%); */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -168,15 +178,10 @@ body
             background-position: center;
             background-repeat: no-repeat;      
             background-color: rgb(36, 36, 36);
-            /* margin-bottom: 50px; */
               
         }
         
         #rightScreen{
-            /* position: absolute; */
-            /* top: 46%; */
-            /* left: 65%; */
-            /* transform: translate(-57%,-43%); */
             display: flex;
             flex-direction: column;
             align-items: start;
@@ -194,11 +199,6 @@ body
         }
         
         #btnScreen{
-            /* position: absolute; */
-            /* top: 76%; */
-            /* left: 65%; */
-            /* transform: translate(-57%,-43%); */
-            /* background-color: rgb(185, 176, 176); */
             width: 100%;
             height: 75px;
             border-radius: 15px;
@@ -238,15 +238,17 @@ footer
     position: fixed;
     bottom: 10px;
     width: 98%;
-    margin-left: 1%;
-    border-radius: 30px;
+    height: 80px;
+    border-radius: 15px;
     background-color: var(--color1);
     justify-content: space-between;
     align-items: center;
     border: 2px solid black;
     box-shadow:  5px 5px 2px #94011c;
-
-
+    .miniPoke{
+        height: 65px;
+    }
+ 
 }
 
 .foot{
@@ -340,6 +342,7 @@ footer
 }
 
 #play{
+    background-color: var(--color6);
     border-radius: 50px;
     position: absolute;
     left: 80%;
@@ -400,7 +403,6 @@ footer
             height: 100px;
 
             background: linear-gradient(145deg, #a8ff78, #78ffd6);
-            /* vert pomme fluo */
             color: #111;
             font-size: 22px;
             font-weight: bold;
@@ -412,7 +414,6 @@ footer
                 0 0 20px #3fff00,
                 0 0 30px #fff,
                 inset 0 0 5px #fff;
-            /*font-family: 'Comic Sans MS', cursive;*/
             cursor: pointer;
             transition: all 0.2s ease-in-out;
             animation: pulse 1s infinite alternate;
@@ -471,7 +472,6 @@ footer
     flex-direction: column;
     width: 80%;
     height: 70%;
-    /* border: 1px solid black; */
 }
 
 .bottomBattle{
@@ -488,21 +488,27 @@ footer
 #backBattle{
     height: 20%;
     color: red;
-    /* border: 1px solid black; */
 }
 
 #statYourPoke{
     display: flex;
-    color: rgb(84, 0, 163);
-    flex: 2;
     .hp{
         background-color: rgb(95, 88, 88);
         height: 120px;
         width: 400px;
         border-radius: 10px;
         border: 3px solid black;
+        box-shadow: 2px 2px 3px #242424;
+    }
+    color: rgb(1, 208, 223);
+    flex: 2;
+    #hpYour{
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
+
 
 
 #statMyPoke{
@@ -520,6 +526,7 @@ footer
         width: 400px;
         border-radius: 10px;
         border: 3px solid black;
+        box-shadow: 2px 2px 3px #242424;
     }
     .action{
         display: flex;
@@ -532,6 +539,7 @@ footer
             box-shadow: 2px 2px 3px #242424;
             transition: ease-in-out 200ms;
             cursor: pointer;
+            border: 2px solid black;
         }
         button:hover{
             box-shadow: 0px 0px 0px #242424;
@@ -539,20 +547,10 @@ footer
     }
 }
 
-#statYourPoke{
-    color: rgb(1, 208, 223);
-    /* border: 1px solid black; */
-    flex: 2;
-    #hpYour{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
+
 
 #spriteMyPoke{
     color: rgb(163, 34, 34);
-    /* border: 1px solid black; */
     flex: 1.5;
     display: flex;
     align-items: center;
@@ -566,7 +564,6 @@ footer
     background-position: center;
     background-size: contain;
     color: rgb(197, 233, 37);
-    /* border: 1px solid black; */
     flex: 1.5;
     margin-right: 5%;
     display: flex;
@@ -592,4 +589,3 @@ footer
         }
 
 
-    }

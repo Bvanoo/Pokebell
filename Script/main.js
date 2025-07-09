@@ -1,4 +1,3 @@
-// HAUTEUR EN DECIMENTRES ET POIDS EN HECTOGRAMME !!!
 const select = document.getElementById('listing');
 const btn = document.querySelectorAll('.btn');
 const screen = document.getElementById('affichage');
@@ -83,7 +82,6 @@ select.addEventListener('change', async () => {
     let loca;
     let name;
     let imageUrl;
-    // console.log(select.value);
 
     try {
         const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${select.value}/?limit=1025&offset=0`);
@@ -111,17 +109,17 @@ select.addEventListener('change', async () => {
             loader.style.opacity = '0';
 
             rightScreen.innerHTML =
-                `<h2>Nom: ${name} (id: ${result.id})</h2>
-            <h2>Taille : ${result.height / 10} M</h2>
-            <h2>Poids : ${result.weight / 10} KG</h2>
-            <h2>Habitat : ${loca}</h2>`;
-
+                `<h2 ><span id="titleName">${name}</span>  n° ${result.id}</h2>
+                <h2><span class="titleStat">Taille</span>: ${result.height / 10} M</h2>
+                <h2><span class="titleStat">Poids</span>: ${result.weight / 10} KG</h2>
+                <h2><span class="titleStat">Habitat</span>: ${loca}</h2>`;
+           
             Info.onclick = () => {
                 rightScreen.innerHTML =
-                    `<h2>Nom: ${name} (id: ${result.id})</h2>
-                <h2>Taille : ${result.height / 10} M</h2>
-                     <h2>Poids : ${result.weight / 10} KG</h2>
-                     <h2>Habitat : ${loca}</h2>`;
+                `<h2 ><span id="titleName">${name}</span> n° ${result.id}</h2>
+                <h2><span class="titleStat">Taille</span>: ${result.height / 10} M</h2>
+                <h2><span class="titleStat">Poids</span>: ${result.weight / 10} KG</h2>
+                <h2><span class="titleStat">Habitat</span>: ${loca}</h2>`;
             };
 
             Stat.onclick = () => {
@@ -328,10 +326,10 @@ poke1.addEventListener('change', async () => {
             act.style.display = 'flex';
         };
             atq.onclick = () => {
-                const yourAttack = result2.stats[1].base_stat;
-                const yourDefense = result2.stats[2].base_stat;
-                const myAttack = result3.stats[1].base_stat;
-                const myDefense = result3.stats[2].base_stat;
+                const yourAttack = result3.stats[1].base_stat;
+                const yourDefense = result3.stats[2].base_stat;
+                const myAttack = result2.stats[1].base_stat;
+                const myDefense = result2.stats[2].base_stat;
                 
                 const damageToYou = (myAttack - yourDefense <= 0) ? 5 : (myAttack - yourDefense);
                 const damageToMe = (yourAttack - myDefense <= 0) ? 5 : (yourAttack - myDefense);
@@ -361,63 +359,3 @@ poke1.addEventListener('change', async () => {
 
 
 //////////FIN VERSUS////////////
-
-
-
-
-
-//  fetch('https://pokeapi.co/api/v2/pokemon/1/?limit=1025&offset=100').then(result => result.json()).then(result => {
-//     console.log(result)
-//     //POSITION POKEDEX
-//     console.log(result.id)
-//     //Stats
-//     console.log(result.height)
-//     console.log(result.weight)
-//     //ATTENTION A METTRE DANS UNE FOREACH
-//     console.log(result.types[0].type.name)
-//     // console.log(result.types[1].type.name)
-//     console.log(result.stats[0].stat.name)
-//     console.log(result.stats[0].base_stat)
-//     console.log(result.stats[1].stat.name)
-//     console.log(result.stats[1].base_stat)
-//     console.log(result.stats[2].stat.name)
-//     console.log(result.stats[2].base_stat)
-//     console.log(result.stats[3].stat.name)
-//     console.log(result.stats[3].base_stat)
-//     console.log(result.stats[4].stat.name)
-//     console.log(result.stats[4].base_stat)
-//     console.log(result.stats[5].stat.name)
-//     console.log(result.stats[5].base_stat)
-//     //Visuel et cri
-//  console.log(result.sprites.back_default)
-//     console.log(result.sprites.front_shiny)
-//     console.log(result.cries.legacy)
-//     //Attaques
-//     console.log(result.abilities[0].ability.name)
-//     console.log(result.abilities[1].ability.name)
-//     // !!!!!!! A FAIRE EN FOREACH OU FOR OF
-
-//     //Evolution
-
-// });
-
-
-// fetch('https://pokeapi.co/api/v2/evolution-chain/25/').then(result => result.json()).then(result => {
-//     console.log(result);
-//     // IF isBaby=== false N'AS PAS DE POKEMON AVANT LUI ELSE IL A EVOLUER D'UN AUTRE
-//     console.log(result.chain.evolves_to[0].species.url)
-// });
-
-
-
-// fetch('https://pokeapi.co/api/v2/language/5/').then(result=>result.json()).then(result => {
-//     console.log(result)
-//     // console.log(result.results[0]
-// });
-
-// btn.forEach(button => {
-//     button.addEventListener('click', () => {
-//         button.style.boxShadow = "inset 20px 20px 60px #bebebe, inset -20px -20px 60px #ffffff";
-//         // setTimeout
-//     });
-// });
