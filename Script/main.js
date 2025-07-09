@@ -316,14 +316,26 @@ poke1.addEventListener('change', async () => {
                             versusBattle.style.display = "flex";
                             myPokeSprite.innerHTML = `<img src ="${result2.sprites.back_default}">`;
                             yourPokeSprite.innerHTML = `<img src ="${result3.sprites.front_default}">`;
-                            hpMy.innerHTML = `<h2>Pdv: ${myHp}</h2>`;
-                            hpYour.innerHTML = `<h2>Pdv: ${yourHp}</h2>`;
+                            hpMy.innerHTML = `<h2>Pdv: ${myHp+30}</h2>`;
+                            hpYour.innerHTML = `<h2>Pdv: ${yourHp+30}</h2>`;
                             
                             
                         };
                         atq.onclick=()=>{
-                            yourHp -= (result2.stats[1].base_stat-result3.stats[2].base_stat);
-                            myHp -= (result3.stats[1].base_stat-result2.stats[2].base_stat);
+                            if(myHp>0 && yourHp>0){
+
+                                yourHp = yourHp-(result2.stats[1].base_stat);
+                                myHp = myHp-(result3.stats[1].base_stat);
+                                hpMy.innerHTML = `<h2>Pdv: ${myHp}</h2>`;
+                                hpYour.innerHTML = `<h2>Pdv: ${yourHp}</h2>`;
+                            }else if(myHp-result3.stats[1].base_stat<=0){
+                                 hpMy.innerHTML = `<h2>YOU LOSE</h2>`
+                                 hpYour.innerHTML = `<h2>YOU WIN</h2>`
+                                }else if(yourHp-result2.stats[1].base_stat<=0){
+                                    hpMy.innerHTML = `<h2>YOU WIN</h2>`
+                                    hpYour.innerHTML = `<h2>YOU LOSE</h2>`
+
+                            }
                         }
                         });
             });
