@@ -12,7 +12,7 @@
     <header>
         <audio src="" id="audio"></audio>
         <img src="Assets/logoPokebell.png" alt="">
-        
+        <div id="play"> <img src="Assets/AdobeStock.png" alt=""><audio src="Assets/Pokémon Theme (8 Bit Remix Cover Version) [Tribute to Pokémon] - 8 Bit Universe.MP3" id="bit"></audio></div>        
         <nav>
             <ul>
                 <li id="pokedex" class="btn">Pokedex</li>
@@ -27,42 +27,35 @@
     </header>
     
     <div id="main-container">
-        
-        <nav>
-            <!-- <h2>Menu</h2> -->
-            
-            <select name="deroul" id="listing" >
-                <option value = "def">Choissisez un pokemon </option>
-                <option value="9999">Pikaben</option>
-            </select>
-            
-            <div id="last_choice"></div>
-            
-            
-        </nav>
-        
-        <div class="loader" id="loader"></div>
-        <main>
-            <div>
-                    <div id="affichage"></div>
-                <div id="rightScreen">
-                    <!-- <canvas id="myChart"></canvas> -->
-                    
-                </div>
+        <div class="left">
+            <div class="blank1"></div>
+            <div id="affichage">
+                <div class="loader" id="loader"></div>
+            </div>
+            <div class="blank"></div>
+            <div class="blank">
+                <nav>
+                    <select name="deroul" id="listing" >
+                        <option value = "def">Choissisez un pokemon </option>
+                        <option value="9999">Pikaben</option>
+                    </select>
+                </nav>
+            </div>
+        </div>
+            <!-- <main> -->
+            <div class="right">
+                <div class="blank"></div>
+                <div id="rightScreen"></div>
                 <div id="btnScreen">
-                    <div id="Info">
-                                                
-                    </div>
-                    <div id="Stat">
-                    </div>
+                    <div id="Info"></div>
+                    <div id="Stat"></div>
                     <div id="Visu"></div>
                     <div id="Atq"></div>
                     <div id="Cri"></div>
                 </div>
-                <img src="Assets/testpoke.png" alt="">
             </div>
     
-        </main>
+        <!-- </main> -->
 
     </div>
 

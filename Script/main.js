@@ -9,11 +9,22 @@ const Stat = document.getElementById('Stat')
 const Visu = document.getElementById('Visu')
 const Atq = document.getElementById('Atq')
 const Cri = document.getElementById('Cri')
+const play = document.getElementById('play')
+const bit = document.getElementById('bit')
 const rightScreen = document.getElementById('rightScreen')
 let imageUrl;
 let i = 1;
+let isPlayed = true;
 
-
+////////////POKEDEX///////////
+play.onclick = () => {
+    if(isPlayed){
+        bit.play();
+    }else{
+        bit.pause();    
+    }
+    isPlayed = !isPlayed;
+};
 
 fetch('https://pokeapi.co/api/v2/pokemon-species/?limit=1025&offset=0').then(result => result.json()).then(result => {
     for (idPoke of result.results) {
@@ -32,19 +43,19 @@ select.addEventListener('change', async () => {
     let loca;
     let name;
     let imageUrl;
-
+    
     try {
         const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${select.value}/?limit=1025&offset=0`);
         const speciesData = await speciesRes.json();
         name = (speciesData.names.find(n => n.language.name === "fr") || speciesData.names[0]).name;
         loca = speciesData.habitat ? speciesData.habitat.name : "Inconnu";
-
+        
         const pokemonRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${select.value}/`);
         const result = await pokemonRes.json();
-
+        
         let defaultImage = result.sprites.front_default;
         let shiny = result.sprites.front_shiny;
-
+        
         if (select.value === "9999") {
             screen.style.backgroundImage = `url(../../Assets/pikaben-removebg-preview.png)`;
             loader.style.opacity = '0';
@@ -57,30 +68,30 @@ select.addEventListener('change', async () => {
             audio.src = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${select.value}.ogg`;
             audio.play();
             loader.style.opacity = '0';
-
+            
             rightScreen.innerHTML =
-                `<h2>Nom: ${name} (id: ${result.id})</h2>
-                 <h2>Taille : ${result.height / 10} M</h2>
-                 <h2>Poids : ${result.weight / 10} KG</h2>
-                 <h2>Habitat : ${loca}</h2>`;
-
+            `<h2>Nom: ${name} (id: ${result.id})</h2>
+            <h2>Taille : ${result.height / 10} M</h2>
+            <h2>Poids : ${result.weight / 10} KG</h2>
+            <h2>Habitat : ${loca}</h2>`;
+            
             Info.onclick = () => {
                 rightScreen.innerHTML =
-                    `<h2>Nom: ${name} (id: ${result.id})</h2>
-                     <h2>Taille : ${result.height / 10} M</h2>
+                `<h2>Nom: ${name} (id: ${result.id})</h2>
+                <h2>Taille : ${result.height / 10} M</h2>
                      <h2>Poids : ${result.weight / 10} KG</h2>
                      <h2>Habitat : ${loca}</h2>`;
-            };
-
-            Stat.onclick = () => {
-                rightScreen.innerHTML = '<canvas id="myChart"></canvas>';
-                const ctx = document.getElementById('myChart');
-                new Chart(ctx, {
-                    type: 'radar',
-                    data: {
-                        labels: [
-                            'Pv',
-                            'Atq',
+                    };
+                    
+                    Stat.onclick = () => {
+                        rightScreen.innerHTML = '<canvas id="myChart"></canvas>';
+                        const ctx = document.getElementById('myChart');
+                        new Chart(ctx, {
+                            type: 'radar',
+                            data: {
+                                labels: [
+                                    'Pv',
+                                    'Atq',
                             'Def-Spé',
                             'Vit',
                             'Def',
@@ -114,7 +125,7 @@ select.addEventListener('change', async () => {
                     }
                 });
             };
-
+            
             Visu.onclick = () => {
                 imageUrl = imageUrl === defaultImage ? shiny : defaultImage;
                 screen.style.backgroundImage = `url(${imageUrl})`;
@@ -141,16 +152,20 @@ select.addEventListener('change', async () => {
     }
 });
 
+////////////FIN POKEDEX///////////
 
-//Visuel api
+///////////VERSUS/////////////
+
+
+//////////FIN VERSUS////////////
 
 
 
 
 
 // fetch('https://pokeapi.co/api/v2/pokemon/1/?limit=1025&offset=100').then(result => result.json()).then(result => {
-//     console.log(result)
-//     //POSITION POKEDEX
+    //     console.log(result)
+    //     //POSITION POKEDEX
 //     console.log(result.id)
 //     //Stats
 //     console.log(result.height)
