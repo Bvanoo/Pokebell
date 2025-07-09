@@ -16,7 +16,7 @@
         <nav>
             <ul>
                 <li id="pokedex" class="btn">Pokedex</li>
-                <li class="btn">Versus</li>
+                <li class="btn" id="versus">Versus</li>
                 <li class="btn">Historique</li>
             </ul>
         </nav>
@@ -36,7 +36,7 @@
             <div class="blank">
                 <nav>
                     <select name="deroul" id="listing" >
-                        <option value = "def">Choissisez un pokemon </option>
+                        <option value = "def">Pokemon </option>
                         <option value="9999">Pikaben</option>
                     </select>
                 </nav>
@@ -58,7 +58,54 @@
         <!-- </main> -->
 
     </div>
+         <div id="versus-container">
 
+            <div class="battle">
+                    <select name="" id="Poke1" class="1stPoke">
+                        <option value="def">Pokemon</option>
+                    </select>
+                <div id="PokeAff1">
+                </div>
+            </div>
+
+                
+            
+            <button id="battle" class="eclate-btn">Battle</button>
+            
+            <div class="battle">
+                    <select name="" id="Poke2" class="2ndPoke">
+                        <option value="def">Pokemon</option>
+                    </select>           
+                <div id="PokeAff2"></div>
+            </div>
+
+        
+    </div>
+
+    <div id="versus-battle">
+
+
+        <div id="backBattle"></div>
+        <div class="topBattle">
+            <div id="statYourPoke">
+                <div class="hp" id="hpYour">
+                    
+                </div>
+            </div>
+            <div id="spriteYourPoke"></div>
+        </div>
+        <div class="bottomBattle">
+            <div id="spriteMyPoke"></div>
+            <div id="statMyPoke">
+                <div class="hp" id="hpMy"></div>
+                <div class="action">
+                    <button id="atq">Attaque</button>
+                    <button id="soin">Soin</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <footer>
 
