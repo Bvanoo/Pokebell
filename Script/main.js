@@ -25,37 +25,43 @@ const battle = document.getElementById('battle')
 
 
 let imageUrl;
-let i= 1;
+let i = 1;
 let l = 1;
 let k = 1;
-let isPlayed = true;
+let isPlayed = false;
 
 ////////////POKEDEX///////////
 play.onclick = () => {
-    if(isPlayed){
+    if (isPlayed) {
+        bit.pause();
+    } else {
         bit.play();
-    }else{
-        bit.pause();    
     }
     isPlayed = !isPlayed;
 };
 
-body.style.backgroundImage= 'url(../Assets/b6d33032-8ed4-4876-a1a7-8e98068b49b2_lakeanim_kristyphlosion_social.gif)';
+body.style.backgroundImage = 'url(../Assets/b6d33032-8ed4-4876-a1a7-8e98068b49b2_lakeanim_kristyphlosion_social.gif)';
 versusBattle.style.display = "none";
 versusContainer.style.display = "none";
 
-pokedex.onclick= ()=>{
-    body.style.backgroundImage= 'url(../Assets/b6d33032-8ed4-4876-a1a7-8e98068b49b2_lakeanim_kristyphlosion_social.gif)';
+pokedex.onclick = () => {
+    body.style.backgroundImage = 'url(../Assets/b6d33032-8ed4-4876-a1a7-8e98068b49b2_lakeanim_kristyphlosion_social.gif)';
     mainContainer.style.display = "flex";
     versusContainer.style.display = "none";
     versusBattle.style.display = "none";
+    bit.src = "Assets/Pokémon Theme (8 Bit Remix Cover Version) [Tribute to Pokémon] - 8 Bit Universe.MP3"
+    bit.play();
+    isPlayed = !isPlayed;
     
 }
-versus.onclick= ()=>{
-    body.style.backgroundImage= 'url(../Assets/DVMT-6OXcAE2rZY.jpg.afab972f972bd7fbd4253bc7aa1cf27f.jpg)';
+versus.onclick = () => {
+    body.style.backgroundImage = 'url(../Assets/DVMT-6OXcAE2rZY.jpg.afab972f972bd7fbd4253bc7aa1cf27f.jpg)';
     versusContainer.style.display = "flex";
     mainContainer.style.display = "none";
     versusBattle.style.display = "none";
+    bit.src = "Assets/Pokémon Theme (Drum and Bass Remix) - Polymer.MP3"
+    bit.play();
+    isPlayed = !isPlayed;
 }
 
 
@@ -70,7 +76,7 @@ fetch('https://pokeapi.co/api/v2/pokemon-species/?limit=1025&offset=0').then(res
         i++;
         // console.log(i)
     }
- 
+
 });
 
 select.addEventListener('change', async () => {
@@ -78,19 +84,19 @@ select.addEventListener('change', async () => {
     let name;
     let imageUrl;
     // console.log(select.value);
-    
+
     try {
         const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${select.value}/?limit=1025&offset=0`);
         const speciesData = await speciesRes.json();
         name = (speciesData.names.find(n => n.language.name === "fr") || speciesData.names[0]).name;
         loca = speciesData.habitat ? speciesData.habitat.name : "Inconnu";
-        
+
         const pokemonRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${select.value}/`);
         const result = await pokemonRes.json();
-        
+
         let defaultImage = result.sprites.front_default;
         let shiny = result.sprites.front_shiny;
-        
+
         if (select.value === "9999") {
             screen.style.backgroundImage = `url(../../Assets/pikaben-removebg-preview.png)`;
             loader.style.opacity = '0';
@@ -103,22 +109,22 @@ select.addEventListener('change', async () => {
             audio.src = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${select.value}.ogg`;
             audio.play();
             loader.style.opacity = '0';
-            
+
             rightScreen.innerHTML =
-            `<h2>Nom: ${name} (id: ${result.id})</h2>
+                `<h2>Nom: ${name} (id: ${result.id})</h2>
             <h2>Taille : ${result.height / 10} M</h2>
             <h2>Poids : ${result.weight / 10} KG</h2>
             <h2>Habitat : ${loca}</h2>`;
-            
+
             Info.onclick = () => {
                 rightScreen.innerHTML =
-                `<h2>Nom: ${name} (id: ${result.id})</h2>
+                    `<h2>Nom: ${name} (id: ${result.id})</h2>
                 <h2>Taille : ${result.height / 10} M</h2>
                      <h2>Poids : ${result.weight / 10} KG</h2>
                      <h2>Habitat : ${loca}</h2>`;
-                    };
-                    
-                    Stat.onclick = () => {
+            };
+
+            Stat.onclick = () => {
                 rightScreen.innerHTML = '<canvas id="myChart"></canvas>';
                 const ctx = document.getElementById('myChart');
                 new Chart(ctx, {
@@ -154,17 +160,17 @@ select.addEventListener('change', async () => {
                         }]
                     },
                     options: {
-                        plugins:{
-                            legend:{
+                        plugins: {
+                            legend: {
                                 labels: {
                                     color: 'rgb(255, 255, 255)',
                                 },
                             },
                         },
-                        scales:{
-                            r:{
-                                pointLabels:{
-                                    font:{
+                        scales: {
+                            r: {
+                                pointLabels: {
+                                    font: {
                                         size: 10,
                                     },
                                     color: 'rgb(255, 255, 255)'
@@ -194,8 +200,8 @@ select.addEventListener('change', async () => {
                     }
                 });
             };
-          
-            
+
+
             Visu.onclick = () => {
                 imageUrl = imageUrl === defaultImage ? shiny : defaultImage;
                 screen.style.backgroundImage = `url(${imageUrl})`;
@@ -234,6 +240,7 @@ const myPoke = document.getElementById("statMyPoke")
 const hpYour = document.getElementById("hpYour")
 const hpMy = document.getElementById("hpMy")
 const atq = document.getElementById("atq")
+const act = document.getElementById("act")
 const soin = document.getElementById("soin")
 const myPokeSprite = document.getElementById("spriteMyPoke")
 let name2;
@@ -241,19 +248,19 @@ let name3;
 let imageUrl2;
 
 
-   fetch('https://pokeapi.co/api/v2/pokemon-species/?limit=1025&offset=0').then(result => result.json()).then(result => {
-    for (idPoke of result.results){
+fetch('https://pokeapi.co/api/v2/pokemon-species/?limit=1025&offset=0').then(result => result.json()).then(result => {
+    for (idPoke of result.results) {
         const option = document.createElement('option');
         option.textContent = idPoke.name;
         option.value = l;
         // console.log(option.value);
         poke1.append(option);
         l++;
-        
+
     }
 });
-   fetch('https://pokeapi.co/api/v2/pokemon-species/?limit=1025&offset=0').then(result => result.json()).then(result => {
-    for (idPoke of result.results){
+fetch('https://pokeapi.co/api/v2/pokemon-species/?limit=1025&offset=0').then(result => result.json()).then(result => {
+    for (idPoke of result.results) {
         const option = document.createElement('option');
         option.textContent = idPoke.name;
         option.value = k;
@@ -265,19 +272,19 @@ let imageUrl2;
 
 
 poke1.addEventListener('change', async () => {
-        const speciesRes2 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${poke1.value}/?limit=1025&offset=0`);
-        const speciesData2 = await speciesRes2.json();
-        name2 = (speciesData2.names.find(n => n.language.name === "fr") || speciesData2.names[0]).name;
-        
-        const pokemonRes2 = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke1.value}/`);
-        const result2 = await pokemonRes2.json();
-        
-        if (poke1.value === "def") {
-            PokeAff1.style.backgroundImage = "none";
-        } else {
-            // audio2.src = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${poke1.value}.ogg`;
-            // audio2.play();
-            PokeAff1.innerHTML =
+    const speciesRes2 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${poke1.value}/?limit=1025&offset=0`);
+    const speciesData2 = await speciesRes2.json();
+    name2 = (speciesData2.names.find(n => n.language.name === "fr") || speciesData2.names[0]).name;
+
+    const pokemonRes2 = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke1.value}/`);
+    const result2 = await pokemonRes2.json();
+
+    if (poke1.value === "def") {
+        PokeAff1.style.backgroundImage = "none";
+    } else {
+        // audio2.src = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${poke1.value}.ogg`;
+        // audio2.play();
+        PokeAff1.innerHTML =
             `<img src="${result2.sprites.front_default}" alt="">
                     <h2>PV :${result2.stats[0].base_stat}</h2>
                     <h2>Atq :${result2.stats[1].base_stat}</h2>
@@ -286,23 +293,23 @@ poke1.addEventListener('change', async () => {
                     <h2>Def Spe :${result2.stats[4].base_stat} </h2>
                     <h2>Vit :${result2.stats[5].base_stat} </h2>
             `;
-            };
-            poke2.addEventListener('change', async () => {
-                    const speciesRes3 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${poke2.value}/?limit=1025&offset=0`);
-                    const speciesData3 = await speciesRes3.json();
-                    name3 = (speciesData3.names.find(n => n.language.name === "fr") || speciesData3.names[0]).name;
-                    
-                    const pokemonRes3 = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke2.value}/`);
-                    const result3 = await pokemonRes3.json();
-                    let myHp = result2.stats[0].base_stat;
-                    let yourHp = result3.stats[0].base_stat;
-                    if (poke2.value === "def") {
-                        PokeAff2.style.backgroundImage = "none";
-                    } else {
-                        // audio2.src = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${poke1.value}.ogg`;
-                        // audio2.play();
-                        PokeAff2.innerHTML =
-                        `<img src="${result3.sprites.front_default}" alt="">
+    };
+    poke2.addEventListener('change', async () => {
+        const speciesRes3 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${poke2.value}/?limit=1025&offset=0`);
+        const speciesData3 = await speciesRes3.json();
+        name3 = (speciesData3.names.find(n => n.language.name === "fr") || speciesData3.names[0]).name;
+
+        const pokemonRes3 = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke2.value}/`);
+        const result3 = await pokemonRes3.json();
+        let myHp = result2.stats[0].base_stat;
+        let yourHp = result3.stats[0].base_stat;
+        if (poke2.value === "def") {
+            PokeAff2.style.backgroundImage = "none";
+        } else {
+            // audio2.src = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${poke1.value}.ogg`;
+            // audio2.play();
+            PokeAff2.innerHTML =
+                `<img src="${result3.sprites.front_default}" alt="">
                                 <h2>PV :${result3.stats[0].base_stat}</h2>
                                 <h2>Atq :${result3.stats[1].base_stat}</h2>
                                 <h2>Def :${result3.stats[2].base_stat} </h2>
@@ -310,35 +317,47 @@ poke1.addEventListener('change', async () => {
                                 <h2>Def Spe :${result3.stats[4].base_stat} </h2>
                                 <h2>Vit :${result3.stats[5].base_stat} </h2>
                         `;
-                        };
-                        battle.onclick= ()=> {
-                            versusContainer.style.display = "none";
-                            versusBattle.style.display = "flex";
-                            myPokeSprite.innerHTML = `<img src ="${result2.sprites.back_default}">`;
-                            yourPokeSprite.innerHTML = `<img src ="${result3.sprites.front_default}">`;
-                            hpMy.innerHTML = `<h2>Pdv: ${myHp+30}</h2>`;
-                            hpYour.innerHTML = `<h2>Pdv: ${yourHp+30}</h2>`;
-                            
-                            
-                        };
-                        atq.onclick=()=>{
-                            if(myHp>0 && yourHp>0){
+        };
+        battle.onclick = () => {
+            versusContainer.style.display = "none";
+            versusBattle.style.display = "flex";
+            myPokeSprite.innerHTML = `<img src ="${result2.sprites.back_default}">`;
+            yourPokeSprite.innerHTML = `<img src ="${result3.sprites.front_default}">`;
+            hpMy.innerHTML = `<h2>Pdv: ${myHp}</h2>`;
+            hpYour.innerHTML = `<h2>Pdv: ${yourHp}</h2>`;
+            act.style.display = 'flex';
+        };
+            atq.onclick = () => {
+                const yourAttack = result2.stats[1].base_stat;
+                const yourDefense = result2.stats[2].base_stat;
+                const myAttack = result3.stats[1].base_stat;
+                const myDefense = result3.stats[2].base_stat;
+                
+                const damageToYou = (myAttack - yourDefense <= 0) ? 5 : (myAttack - yourDefense);
+                const damageToMe = (yourAttack - myDefense <= 0) ? 5 : (yourAttack - myDefense);
+                
+                yourHp -= damageToYou;
+                myHp -= damageToMe;
+                
+                if (myHp > 0 && yourHp > 0) {
+                    hpYour.innerHTML = `<h2>Pdv: ${yourHp}</h2>`;
+                    hpMy.innerHTML = `<h2>Pdv: ${myHp}</h2>`;
+                } else if (myHp <= 0) {
+                    console.log("nope")
+                    hpMy.innerHTML = `<h2>YOU LOSE</h2>`;
+                    hpYour.innerHTML = `<h2>YOU WIN</h2>`;
+                    act.style.display = 'none';
+                } else if (yourHp <= 0) {
+                    console.log("nope")
+                    hpMy.innerHTML = `<h2>YOU WIN</h2>`;
+                    hpYour.innerHTML = `<h2>YOU LOSE</h2>`;
+                    act.style.display = 'none';
+                }
+            }
+            
 
-                                yourHp = yourHp-(result2.stats[1].base_stat);
-                                myHp = myHp-(result3.stats[1].base_stat);
-                                hpMy.innerHTML = `<h2>Pdv: ${myHp}</h2>`;
-                                hpYour.innerHTML = `<h2>Pdv: ${yourHp}</h2>`;
-                            }else if(myHp-result3.stats[1].base_stat<=0){
-                                 hpMy.innerHTML = `<h2>YOU LOSE</h2>`
-                                 hpYour.innerHTML = `<h2>YOU WIN</h2>`
-                                }else if(yourHp-result2.stats[1].base_stat<=0){
-                                    hpMy.innerHTML = `<h2>YOU WIN</h2>`
-                                    hpYour.innerHTML = `<h2>YOU LOSE</h2>`
-
-                            }
-                        }
-                        });
-            });
+});
+});
 
 
 //////////FIN VERSUS////////////
@@ -348,13 +367,13 @@ poke1.addEventListener('change', async () => {
 
 
 //  fetch('https://pokeapi.co/api/v2/pokemon/1/?limit=1025&offset=100').then(result => result.json()).then(result => {
-    //     console.log(result)
-    //     //POSITION POKEDEX
+//     console.log(result)
+//     //POSITION POKEDEX
 //     console.log(result.id)
 //     //Stats
 //     console.log(result.height)
 //     console.log(result.weight)
-//     //ATTENTION A METTRE DANS UNE FOREACH 
+//     //ATTENTION A METTRE DANS UNE FOREACH
 //     console.log(result.types[0].type.name)
 //     // console.log(result.types[1].type.name)
 //     console.log(result.stats[0].stat.name)
@@ -369,8 +388,8 @@ poke1.addEventListener('change', async () => {
 //     console.log(result.stats[4].base_stat)
 //     console.log(result.stats[5].stat.name)
 //     console.log(result.stats[5].base_stat)
-//     //Visuel et cri 
-    //  console.log(result.sprites.back_default)
+//     //Visuel et cri
+//  console.log(result.sprites.back_default)
 //     console.log(result.sprites.front_shiny)
 //     console.log(result.cries.legacy)
 //     //Attaques
@@ -378,14 +397,14 @@ poke1.addEventListener('change', async () => {
 //     console.log(result.abilities[1].ability.name)
 //     // !!!!!!! A FAIRE EN FOREACH OU FOR OF
 
-//     //Evolution 
+//     //Evolution
 
 // });
 
 
 // fetch('https://pokeapi.co/api/v2/evolution-chain/25/').then(result => result.json()).then(result => {
 //     console.log(result);
-//     // IF isBaby=== false N'AS PAS DE POKEMON AVANT LUI ELSE IL A EVOLUER D'UN AUTRE 
+//     // IF isBaby=== false N'AS PAS DE POKEMON AVANT LUI ELSE IL A EVOLUER D'UN AUTRE
 //     console.log(result.chain.evolves_to[0].species.url)
 // });
 

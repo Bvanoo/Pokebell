@@ -282,9 +282,9 @@ footer
     height: 80%;
 }
 .loader {
-    scale: .5;
+    scale: .7;
     height: 35%;
-    width: 25%;
+    width: 22%;
 }
 .blank{
     display: flex;
